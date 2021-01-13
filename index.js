@@ -22,12 +22,12 @@ const server = http.createServer((req, res) => {
             case 'POST':
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'text/plain');
-                let body = '';
+                let bodyPost = '';
                 req.on('data', chunk => {
-                    body += chunk.toString();
+                    bodyPost += chunk.toString();
                 });
                 req.on('end', () => {
-                    let params = parse(body);
+                    const params = parse(bodyPost);
                     users.push(params);
                     res.end('Good!');
                 });
@@ -35,12 +35,12 @@ const server = http.createServer((req, res) => {
             case 'PUT':
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'text/plain');
-                let boddy = '';
+                let bodyPut = '';
                 req.on('data', chunk => {
-                    boddy += chunk.toString();
+                    bodyPut += chunk.toString();
                 });
                 req.on('end', () => {
-                    let params = parse(boddy);
+                    const params = parse(bodyPut);
                     users = params;
                     res.end('Nice!');
                 });
